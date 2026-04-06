@@ -1,0 +1,6 @@
+global-components:
+  ActionBtn: button # Lint <ActionBtn> as though it was a <button />
+  CallToAction:
+    element: button
+    attributes:
+      - label: <text>
