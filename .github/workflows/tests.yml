@@ -1,0 +1,83 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+  playwright:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Use Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: |
+          # Pull public packages from the public registry.
+          npm config set "registry" "https://registry.npmjs.org/"
+          # Pull our private packages from Agora.
+          npm config set "@axe-devtools:registry" "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/"
+          npm config set "@deque:registry" "https://agora.dequecloud.com/artifactory/api/npm/dequelabs/"
+          npm config set "//agora.dequecloud.com/artifactory/api/npm/dequelabs/:_auth" "${{ secrets.AGORA_AUTH_TOKEN }}"
+          npm config set "//agora.dequecloud.com/artifactory/api/npm/dequelabs/:email" "${{ secrets.AGORA_AUTH_EMAIL }}"
+      - name: Install dependencies
+        run: |
+          npm install
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      # Newer versions of Ubuntu have increased security restrictions in which
+      # puppeteer/wdio is unable to launch without additional configuration
+      # See: https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md
+      # - name: Remove Ubuntu Restrictions
+      #   run: |
+      #     export CHROME_DEVEL_SANDBOX=/opt/google/chrome/chrome-sandbox
+      #     sudo chmod 4755 /opt/google/chrome/chrome-sandbox
+      - name: Build project
+        run: |
+          npm run build
+      - name: Start Server
+        run: |
+          npm start > server.log 2>&1 &
+          sleep 15
+          # Health check - retry up to 60 seconds
+          for i in {1..60}; do
+            if curl -s http://localhost:3000 > /dev/null; then
+              echo "Server is ready"
+              exit 0
+            fi
+            echo "Waiting for server... ($i/60)"
+            sleep 1
+          done
+          echo "Server failed to start"
+          cat server.log
+          exit 1
+      - name: Run Playwright tests
+        run: |
+          DEBUG=axe-watcher* npm test
+        env:
+          PLAYWRIGHT_API_KEY: ${{ secrets.PLAYWRIGHT_API_KEY }}
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          SERVER_URL: https://axe.deque.com
+          BUILD_ID: ${{ github.run_id }}
+  devhub:
+    permissions: write-all
+    runs-on: ubuntu-22.04
+    needs: playwright
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dequelabs/axe-devhub-action@v1
+        with:
+          api_key: ${{ secrets.PLAYWRIGHT_API_KEY}}
+          project_id: ${{secrets.PROJECT_ID}}

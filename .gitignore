@@ -5,3 +5,4 @@ cypress/screenshots
 test-results
 .claude
 .DS_Store
+.vscode

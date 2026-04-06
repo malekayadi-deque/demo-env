@@ -1,0 +1,14 @@
+name: Lint for accessibility issues
+
+on: [pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dequelabs/axe-linter-action@v1
+        with:
+          api_key: ${{ secrets.LINTER_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
