@@ -6,25 +6,25 @@ A Next.js 14 e-commerce application used as a test target for axe DevTools acces
 
 ## System Architecture
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 14 (App Router) |
-| UI Library | React 18 |
-| Styling | Bootstrap 5 + custom SCSS |
-| Data | Static mock data (no backend) |
-| Dev Server | `http://localhost:3000` |
+| Layer      | Technology                    |
+| ---------- | ----------------------------- |
+| Framework  | Next.js 14 (App Router)       |
+| UI Library | React 18                      |
+| Styling    | Bootstrap 5 + custom SCSS     |
+| Data       | Static mock data (no backend) |
+| Dev Server | `http://localhost:3000`       |
 
 **App structure:** 30 routes across shop, cart, checkout, auth, blog, and account flows. Tested pages cover the critical user journey: Home → Shop → Product → Cart → Checkout → Confirmation.
 
 **Testing packages:**
 
-| Framework | axe Package |
-|---|---|
-| Playwright | `@axe-core/playwright` |
-| Cypress | `@axe-core/watcher` |
-| Puppeteer | `@axe-core/watcher/puppeteer` |
-| WebdriverIO | `@axe-devtools/webdriverio` |
-| WebdriverJS (Selenium) | `@axe-devtools/webdriverjs` |
+| Framework              | axe Package                   |
+| ---------------------- | ----------------------------- |
+| Playwright             | `@axe-core/playwright`        |
+| Cypress                | `@axe-core/watcher`           |
+| Puppeteer              | `@axe-core/watcher/puppeteer` |
+| WebdriverIO            | `@axe-devtools/webdriverio`   |
+| WebdriverJS (Selenium) | `@axe-devtools/webdriverjs`   |
 
 ---
 
@@ -147,7 +147,10 @@ npm run puppeteer:axe
 **Headless vs. headed tradeoffs** — All frameworks run `--headless=new` by default. Run headed (`--headed` in Playwright, omit `--headless` in others) when debugging unexpected element interaction failures — cookie consent overlays and viewport-dependent layouts are easier to diagnose with a visible browser.
 
 **Deque registry authentication** — `@axe-devtools/webdriverio` and `@axe-devtools/webdriverjs` are served from the Deque npm registry. If `npm install` fails on these packages in a new environment, authenticate first:
+
 ```bash
 npm config set @deque:registry https://registry.deque.com/
 npm login --registry=https://registry.deque.com/
 ```
+
+TO DO : Github secrets for workflows.!!!
