@@ -35,8 +35,18 @@ Next.js 14 e-commerce demo app (merged from `embel-ts` and `recipes-js` repos). 
 ## Dev Server
 ```
 npm run dev      # http://localhost:3000
-npm run start    # production build server
+npm run start    # production build server (requires npm run build first)
 ```
+
+## First-time Setup (new machine / fresh fork)
+1. Configure the Deque private registry — copy `.npmrc.example` to `.npmrc` and fill in Agora credentials before running `npm install`. Without this, install fails on `@axe-devtools/*` packages.
+2. `npm install`
+3. `npx playwright install chromium` — not included in `npm install`, must be run separately
+4. Create `.env` at project root (see Environment Variables below)
+5. `npm run build` before using any `:axe` scripts (they use `npm start`, not `npm run dev`)
+
+## GitHub Actions Secrets Required
+`API_KEY`, `PROJECT_ID`, `LINTER_API_KEY`, `AGORA_AUTH_TOKEN`, `AGORA_AUTH_EMAIL` — all must be set in GitHub → Settings → Secrets before any workflow will pass.
 
 ## Environment Variables
 `.env` file at project root (not committed). All API keys have been unified into a single `API_KEY` variable. Project IDs remain unique per framework.
@@ -81,7 +91,7 @@ npm run start    # production build server
 
 ## Playwright
 
-### Status: ⏳ Not re-verified after API_KEY rename
+### Status: ✅ 35/35 passing
 - Config: `playwright.config.js` (root)
 - Fixtures: `_tests/playwright/fixtures/fixtures.js` — uses `process.env.API_KEY`
 - Specs: `_tests/playwright/specs/*.spec.js`
@@ -93,10 +103,11 @@ npm run start    # production build server
 
 ## Cypress + axe Watcher
 
-### Status: ⏳ Not re-verified after API_KEY rename
+### Status: ✅ 39/39 passing (Chrome for Testing 146, headless)
 - Config: `cypress.config.js` — uses `process.env.API_KEY` and `process.env.PROJECT_ID`
 - Support: `cypress/support/e2e.js` — imports watcher support, flushes after each test
-- Browser: Chrome for Testing at `/Users/ap/TestEngines/chrome-mac-arm64/` (v141, arm64)
+- Browser: Puppeteer's bundled **Chrome for Testing** via `puppeteer.executablePath()` — version and path resolved dynamically at config load time, no hardcoded paths
+- Cypress browser name: `chrome-for-testing` (set in `--browser` flag in all cypress scripts)
 
 ### Scripts
 ```

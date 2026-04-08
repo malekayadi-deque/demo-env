@@ -12,8 +12,8 @@ describe('Product Details Page', () => {
   });
 
   it('should display product details correctly', () => {
-    cy.get('h1.product-single__name').first().should('have.text', product.title);
-    cy.get('.product-single__price .current-price').first().should('have.text', `$${product.price}`);
+    cy.get('section.product-single .product-single__name').first().should('have.text', product.title);
+    cy.get('section.product-single .product-single__price .current-price').first().should('have.text', `$${product.price}`);
   });
 
   it('should display product rating and reviews', () => {

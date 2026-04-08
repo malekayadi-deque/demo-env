@@ -33,11 +33,11 @@ describe('Product Details Page (WebdriverIO)', () => {
   });
 
   it('should display product details correctly', async () => {
-    await browser.$('h1.product-single__name').waitForDisplayed({ timeout: 10000 });
-    const title = await browser.$('h1.product-single__name').getText();
+    await browser.$('section.product-single .product-single__name').waitForDisplayed({ timeout: 10000 });
+    const title = await browser.$('section.product-single .product-single__name').getText();
     assert.strictEqual(title, product.title);
 
-    const price = await browser.$('.product-single__price .current-price').getText();
+    const price = await browser.$('section.product-single .product-single__price .current-price').getText();
     assert.strictEqual(price, `$${product.price}`);
   });
 

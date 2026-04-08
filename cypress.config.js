@@ -1,6 +1,12 @@
 require('dotenv').config();
 
+const puppeteer = require('puppeteer');
 const { cypressConfig } = require('@axe-core/watcher/cypress/config');
+
+const chromePath = puppeteer.executablePath();
+const versionMatch = chromePath.match(/(\d+\.\d+\.\d+\.\d+)/);
+const chromeVersion = versionMatch ? versionMatch[1] : '1';
+const chromeMajor = parseInt(chromeVersion.split('.')[0], 10);
 
 module.exports = cypressConfig({
   axe: {
@@ -28,13 +34,13 @@ module.exports = cypressConfig({
   },
   browsers: [
     {
-      name: 'chrome',
+      name: 'chrome-for-testing',
       channel: 'stable',
       family: 'chromium',
       displayName: 'Chrome for Testing',
-      version: '141.0.7390.78',
-      path: '/Users/ap/TestEngines/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing',
-      majorVersion: 141,
+      version: chromeVersion,
+      path: chromePath,
+      majorVersion: chromeMajor,
     },
   ],
 });

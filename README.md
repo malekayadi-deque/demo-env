@@ -30,9 +30,33 @@ A Next.js 14 e-commerce application used as a test target for axe DevTools acces
 
 ## Setup
 
+### 1. Configure the Deque private registry
+
+`@axe-devtools/webdriverio` and `@axe-devtools/webdriverjs` are hosted on Deque's private Agora registry. **Do this before `npm install`** or it will fail on those packages.
+
+```bash
+cp .npmrc.example .npmrc
+# Edit .npmrc and fill in your AGORA_AUTH_TOKEN and email
+```
+
+To get your base64 auth token:
+
+```bash
+echo -n "your-email@example.com:your-agora-password" | base64
+```
+
+Paste the output into `.npmrc` as the `_auth` value. Alternatively you can authenticate interactively:
+
+```bash
+npm login --registry=https://agora.dequecloud.com/artifactory/api/npm/dequelabs/
+```
+
+### 2. Install dependencies and Playwright browsers
+
 ```bash
 npm install
-npm run dev     # http://localhost:3000
+npx playwright install chromium   # downloads Playwright's Chromium binary
+npm run dev                        # http://localhost:3000
 ```
 
 ---
@@ -136,6 +160,22 @@ npm run puppeteer:axe
 
 ---
 
+## GitHub Actions Setup
+
+The CI workflows require the following secrets configured in **GitHub → Settings → Secrets and variables → Actions**:
+
+| Secret | Required by | Where to get it |
+|---|---|---|
+| `API_KEY` | Playwright test run, axe-devhub action | axe Developer Hub → Manage API Keys |
+| `PROJECT_ID` | Playwright test run, axe-devhub action | axe Developer Hub → Projects |
+| `LINTER_API_KEY` | axe-linter workflow (PRs) | axe Developer Hub → Manage API Keys |
+| `AGORA_AUTH_TOKEN` | `npm install` (Deque packages) | `echo -n "email:password" \| base64` for your Agora account |
+| `AGORA_AUTH_EMAIL` | `npm install` (Deque packages) | Your Agora account email |
+
+Without these, all workflows will fail at the install or test step.
+
+---
+
 ## Best Practices
 
 **CI/CD gating** — Add a status check in your pipeline that fails the build when axe DevTools reports new violations. Use `npm run ci` (Playwright) or the equivalent `*:axe` scripts for each framework as your CI command. Set `BUILD_ID=$GITHUB_RUN_ID` to tie every parallel run to a single report.
@@ -153,4 +193,3 @@ npm config set @deque:registry https://registry.deque.com/
 npm login --registry=https://registry.deque.com/
 ```
 
-TO DO : Github secrets for workflows.!!!

@@ -36,11 +36,11 @@ describe('Product Details Page (Puppeteer)', () => {
   });
 
   it('should display product details correctly', async () => {
-    await page.waitForSelector('h1.product-single__name', { visible: true, timeout: 10000 });
-    const title = await page.$eval('h1.product-single__name', el => el.textContent.trim());
+    await page.waitForSelector('section.product-single .product-single__name', { visible: true, timeout: 10000 });
+    const title = await page.$eval('section.product-single .product-single__name', el => el.textContent.trim());
     assert.strictEqual(title, product.title);
 
-    const price = await page.$eval('.product-single__price .current-price', el => el.textContent.trim());
+    const price = await page.$eval('section.product-single .product-single__price .current-price', el => el.textContent.trim());
     assert.strictEqual(price, `$${product.price}`);
   });
 

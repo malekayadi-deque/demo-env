@@ -34,11 +34,11 @@ describe('Product Details Page (WebdriverJS)', () => {
   });
 
   it('should display product details correctly', async () => {
-    await browser.wait(until.elementLocated(By.css('h1.product-single__name')), 10000);
-    const title = await browser.findElement(By.css('h1.product-single__name'));
+    await browser.wait(until.elementLocated(By.css('section.product-single .product-single__name')), 10000);
+    const title = await browser.findElement(By.css('section.product-single .product-single__name'));
     assert.strictEqual((await title.getText()).trim(), product.title);
 
-    const price = await browser.findElement(By.css('.product-single__price .current-price'));
+    const price = await browser.findElement(By.css('section.product-single .product-single__price .current-price'));
     assert.strictEqual((await price.getText()).trim(), `$${product.price}`);
   });
 

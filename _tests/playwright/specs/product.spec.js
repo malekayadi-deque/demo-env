@@ -15,12 +15,12 @@ test.describe("Product Details Page", () => {
 
   test("should display product details correctly", async ({ page }) => {
     // Check product title
-    const productTitle = page.locator("h1.product-single__name").first();
+    const productTitle = page.locator("section.product-single .product-single__name").first();
     await expect(productTitle).toHaveText(product.title);
 
     // Check product price
     const productPrice = page
-      .locator(".product-single__price .current-price")
+      .locator("section.product-single .product-single__price .current-price")
       .first();
     await expect(productPrice).toHaveText(`$${product.price}`);
   });

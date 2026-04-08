@@ -1,0 +1,13 @@
+# Copy this file to .npmrc and fill in your Agora credentials.
+# .npmrc is gitignored — never commit credentials.
+
+# Public packages come from npm
+registry=https://registry.npmjs.org/
+
+# Deque private packages (@axe-devtools/*, @deque/*)
+@axe-devtools:registry=https://agora.dequecloud.com/artifactory/api/npm/dequelabs/
+@deque:registry=https://agora.dequecloud.com/artifactory/api/npm/dequelabs/
+
+# Agora credentials — get these from your Deque account
+//agora.dequecloud.com/artifactory/api/npm/dequelabs/:_auth=YOUR_BASE64_AUTH_TOKEN
+//agora.dequecloud.com/artifactory/api/npm/dequelabs/:email=YOUR_EMAIL
