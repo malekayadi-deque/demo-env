@@ -23,8 +23,8 @@ export default function SizeGuide() {
                   height={511}
                   style={{ height: "fit-content" }}
                   loading="lazy"
-                  src="/assets/images/size-guide.jpg"
-                  alt="image"
+                  src="/assets/images/products/size_guide.png"
+                  alt=""
                 />
               </div>
               <div className="size-guide__detail">

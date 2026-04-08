@@ -65,7 +65,7 @@ export default function Faq() {
       <h2 className="section-title text-uppercase fw-bold mb-5">
         FREQUENTLY ASKED QUESTIONS
       </h2>
-      <h3 className="mb-4">Orders</h3>
+      <h6 className="mb-4">Orders</h6>
       <div id="faq_accordion" className="faq-accordion accordion mb-5">
         {accordionData.map((item) => (
           <div key={item.id} className="accordion-item">
@@ -113,7 +113,7 @@ export default function Faq() {
           </div>
         ))}
       </div>
-      <h3 className="mb-4">Shipping</h3>
+      <h6 className="mb-4">Shipping</h6>
       <div id="faq_accordion_2" className="faq-accordion accordion mb-5">
         {accordionData2.map((item) => (
           <div key={item.id} className="accordion-item">
@@ -161,7 +161,7 @@ export default function Faq() {
           </div>
         ))}
       </div>
-      <h3 className="mb-4">Payment</h3>
+      <h6 className="mb-4">Payment</h6>
       <div id="faq_accordion_3" className="faq-accordion accordion mb-5">
         {accordionData3.map((item) => (
           <div key={item.id} className="accordion-item">

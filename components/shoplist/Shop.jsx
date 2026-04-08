@@ -28,6 +28,14 @@ export default function Shop5() {
   const { setQuickViewItem } = useContextElement();
   const { addProductToCart, isAddedToCartProducts } = useContextElement();
   const [selectedColView, setSelectedColView] = useState(2);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchKeyDown = (e) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+    }
+  };
+
   return (
     <section className="shop-main container d-flex pt-4 pt-xl-5">
       <div className="shop-sidebar side-sticky bg-body">
@@ -40,6 +48,17 @@ export default function Shop5() {
         </div>
 
         <div className="pt-4 pt-lg-0"></div>
+
+        <div className="mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleSearchKeyDown}
+          />
+        </div>
 
         <FilterAll />
       </div>

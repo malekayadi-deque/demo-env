@@ -28,7 +28,7 @@ export default function Contact() {
             className="needs-validation"
             onSubmit={(e) => e.preventDefault()}
           >
-            <h3 className="mb-5">Get In Touch</h3>
+            <div className="mb-5" style={{ fontSize: "1.25rem", fontWeight: "bold" }}>Get In Touch</div>
             <div className="form-floating my-4">
               <input
                 type="text"
@@ -59,9 +59,9 @@ export default function Contact() {
               ></textarea>
             </div>
             <div className="my-4">
-              <button type="submit" className="btn btn-primary">
+              <div className="btn btn-primary" style={{ cursor: "pointer" }} onClick={(e) => e.preventDefault()}>
                 Submit
-              </button>
+              </div>
             </div>
           </form>
         </div>

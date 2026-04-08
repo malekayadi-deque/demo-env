@@ -36,9 +36,9 @@ export default function Blogs() {
   };
   return (
     <section className="blog-carousel container">
-      <h2 className="section-title fw-normal text-center text-uppercase mb-3 pb-xl-3 mb-xl-3">
+      <div className="section-title fw-normal text-center text-uppercase mb-3 pb-xl-3 mb-xl-3" style={{ fontSize: "1.5rem" }}>
         Latest News
-      </h2>
+      </div>
 
       <div className="position-relative">
         <Swiper

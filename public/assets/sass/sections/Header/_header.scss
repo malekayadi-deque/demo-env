@@ -11,3 +11,16 @@
 
 @import 'header-mobile';
 @import 'header-sticky';
+
+.header {
+  a,
+  button,
+  input,
+  select {
+    &:focus,
+    &:focus-visible {
+      outline: none !important;
+      outline-offset: 0;
+    }
+  }
+}

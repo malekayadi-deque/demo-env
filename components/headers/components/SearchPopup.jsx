@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation'
 
 export default function SearchPopup() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -51,7 +51,7 @@ export default function SearchPopup() {
           <i className="btn-icon btn-close-lg"></i>
         </a>
       </div>
-      <div className="test github"> </div>
+
       <div className="search-popup js-hidden-content">
         <form
           onSubmit={(e) => e.preventDefault()}
@@ -67,10 +67,10 @@ export default function SearchPopup() {
               name="search-keyword"
               placeholder="Search products"
             />
-            <button
+            <button 
               className="btn-icon search-popup__submit"
               type="submit"
-              onClick={() => router.push("/shop")}
+              onClick={() => router.push('/shop')}
             >
               <svg
                 className="d-block"

@@ -1346,3 +1346,17 @@ a.add-to-wishlist {
     }
   }
 }
+
+.product-single {
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    &:focus,
+    &:focus-visible {
+      outline: none !important;
+      outline-offset: 0;
+    }
+  }
+}

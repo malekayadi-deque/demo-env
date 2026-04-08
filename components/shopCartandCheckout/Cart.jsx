@@ -4,7 +4,8 @@ import { useContextElement } from "@/context/Context";
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation'
+
 
 export default function Cart() {
   const router = useRouter();
@@ -247,9 +248,9 @@ export default function Cart() {
             </div>
             <div className="mobile_fixed-btn_wrapper">
               <div className="button-wrapper container">
-                <button
+                <button 
                   className="btn btn-primary btn-checkout"
-                  onClick={() => router.push("/shop_checkout")}
+                  onClick={() => router.push('/shop_checkout')}
                 >
                   PROCEED TO CHECKOUT
                 </button>

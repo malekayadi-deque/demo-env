@@ -47,7 +47,7 @@ export default function SingleProduct12({ product }) {
         <div className="col-lg-7">
           <ProductSlider1 productId={product.id} />
         </div>
-        <div className="col-lg-5">
+        <div className="col-lg-5" id="product-options">
           <div className="d-flex justify-content-between mb-4 pb-md-2">
             <div className="breadcrumb mb-0 d-none d-md-block flex-grow-1">
               <BreadCumb />
@@ -82,7 +82,7 @@ export default function SingleProduct12({ product }) {
             </div>
             {/* <!-- /.shop-acs --> */}
           </div>
-          <h1 className="product-single__name">{product.title}</h1>
+          <div className="product-single__name">{product.title}</div>
           <div className="product-single__rating">
             <div className="reviews-group d-flex">
               <Star stars={5} />
@@ -107,7 +107,7 @@ export default function SingleProduct12({ product }) {
               <div className="product-swatch text-swatches">
                 <label>Sizes</label>
                 <div className="swatch-list">
-                  <Size />
+                  <Size productId={product.id} />
                 </div>
                 <a
                   href="#"
@@ -121,13 +121,20 @@ export default function SingleProduct12({ product }) {
               <div className="product-swatch color-swatches">
                 <label>Color</label>
                 <div className="swatch-list">
-                  <Colors />
+                  <Colors productId={product.id} />
                 </div>
               </div>
             </div>
             <div className="product-single__addtocart">
               <div className="qty-control position-relative">
+                <label
+                  htmlFor={`quantity-${product.id}`}
+                  className="visually-hidden"
+                >
+                  Quantity
+                </label>
                 <input
+                  id={`quantity-${product.id}`}
                   type="number"
                   name="quantity"
                   value={isIncludeCard() ? isIncludeCard().quantity : quantity}

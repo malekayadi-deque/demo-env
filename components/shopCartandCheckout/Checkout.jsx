@@ -361,12 +361,13 @@ export default function Checkout() {
                 .
               </div>
             </div>
-            <button 
+            <div
               className="btn btn-primary btn-checkout"
               onClick={() => router.push('/order-confirmation')}
+              style={{ cursor: "pointer" }}
             >
               PLACE ORDER
-            </button>
+            </div>
           </div>
         </div>
       </div>

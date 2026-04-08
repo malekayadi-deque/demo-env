@@ -111,7 +111,7 @@ export default function BestSelling() {
                   </div>
 
                   <div className="pc__info position-relative">
-                    <p className="pc__category">{elm.category}</p>
+                    <p className="pc__category" style={{ color: "#c0c0c0" }}>{elm.category}</p>
                     <h6 className="pc__title mb-2">
                       <Link href={`/product/${elm.id}`}>
                         {elm.title}
