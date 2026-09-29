@@ -1,5 +1,5 @@
 import { defineConfig } from "@playwright/test";
-
+require('dotenv').config();
 export default defineConfig({
   testDir: "./_tests/playwright/specs",
   use: {
