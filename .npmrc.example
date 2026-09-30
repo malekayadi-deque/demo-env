@@ -10,4 +10,3 @@ registry=https://registry.npmjs.org/
 
 # Agora credentials — get these from your Deque account
 //agora.dequecloud.com/artifactory/api/npm/dequelabs/:_auth=YOUR_BASE64_AUTH_TOKEN
-//agora.dequecloud.com/artifactory/api/npm/dequelabs/:email=YOUR_EMAIL
