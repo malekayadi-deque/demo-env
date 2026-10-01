@@ -48,11 +48,17 @@
     "@playwright/test": "^1.63.0",
     "cypress": "^15.11.0",
     "eslint-config-next": "16.1.6",
-    "mocha": "^10.8.2",
+    "mocha": "^12.0.2",
     "playwright": "^1.58.0",
     "puppeteer": "^24.40.0",
     "selenium-webdriver": "^4.41.0",
     "start-server-and-test": "^2.0.9",
     "webdriverio": "^9.26.1"
+  },
+  "allowScripts": {
+    "cypress@15.21.1": true,
+    "puppeteer@24.43.1": true,
+    "edgedriver@6.3.1": true,
+    "geckodriver@6.1.1": true
   }
 }
