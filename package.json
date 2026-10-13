@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx playwright test",
+    "test": "AXE_IS_CI=true npx playwright test",
     "ci": "DEBUG=axe-watcher* start-server-and-test start http://localhost:3000 test",
     "cypress": "env -u ELECTRON_RUN_AS_NODE AXE_IS_CI=true cypress run --browser chrome-for-testing --config-file cypress.config.js",
     "test:cypress": "env -u ELECTRON_RUN_AS_NODE AXE_IS_CI=true cypress open --config-file cypress.config.js",
@@ -27,7 +27,7 @@
     "bootstrap": "^5.0.2",
     "dotenv": "^17.4.2",
     "eslint": "^9.39.2",
-    "next": "14.2.3",
+    "next": "^14.2.35",
     "photoswipe": "^5.4.4",
     "rc-slider": "^10.6.2",
     "react": "^18",
@@ -36,7 +36,7 @@
     "react-photoswipe-gallery": "^3.0.1",
     "react-tooltip": "^5.26.4",
     "sass": "^1.75.0",
-    "swiper": "^11.1.1",
+    "swiper": "^14.3.0",
     "tippy.js": "^6.3.7"
   },
   "devDependencies": {
@@ -47,13 +47,13 @@
     "@biomejs/biome": "^2.4.2",
     "@playwright/test": "^1.63.0",
     "cypress": "^15.11.0",
-    "eslint-config-next": "16.1.6",
+    "eslint-config-next": "^14.2.35",
     "mocha": "^12.0.2",
     "playwright": "^1.58.0",
-    "puppeteer": "^24.40.0",
+    "puppeteer": "^25.13.0",
     "selenium-webdriver": "^4.41.0",
     "start-server-and-test": "^2.0.9",
-    "webdriverio": "^9.26.1"
+    "webdriverio": "^10.0.2"
   },
   "allowScripts": {
     "cypress@15.21.1": true,

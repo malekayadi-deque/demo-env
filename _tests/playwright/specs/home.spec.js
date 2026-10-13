@@ -1,4 +1,4 @@
-// import { test, expect } from '@playwright/test';
+//import { test, expect } from '@playwright/test'
 import { test, expect } from "../fixtures/fixtures.js";
 
 test.describe("Home Page", () => {
@@ -18,6 +18,8 @@ test.describe("Home Page", () => {
 
     // Validate Hero Section
     const hero = page.locator(
+
+  
       "main > div.swiper.swiper-container.swiper-container-horizontal"
     );
     await expect(hero).toBeVisible();

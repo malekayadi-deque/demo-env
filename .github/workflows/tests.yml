@@ -32,7 +32,8 @@ jobs:
           npm start &
       - name: Run Playwright tests
         run: |
-          DEBUG=axe-watcher* npm test
+          DEBUG=axe-watcher* 
+          npm test
         env:
           AXE_WATCHER_API_KEY: ${{ secrets.API_KEY }}
           DEVELOPERHUB_PROJECT_ID: ${{ secrets.PROJECT_ID }}
